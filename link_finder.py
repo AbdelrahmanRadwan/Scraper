@@ -1,6 +1,9 @@
 from html.parser import HTMLParser
 from urllib import parse
 
+'''
+Manipulates given HTML.
+'''
 class LinkFinder(HTMLParser):
     def __int__(self, base_url, page_url):
         super().__init__()
