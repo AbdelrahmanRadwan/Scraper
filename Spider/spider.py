@@ -15,6 +15,15 @@ class spider:
     queue = set() # the waiting list
     crawled = set() # the crawled pages
 
+    def __init__(self, project_name, base_url, domain_name):
+        spider.project_name = project_name
+        spider.domain_name = domain_name
+        spider.base_url = base_url
+        spider.queue_file = spider.project_name + "/queue.txt"
+        spider.crawled_file = spider.project_name + "/crawled.txt"
+        self.boot()
+        self.crawl_page("First Spider", spider.base_url)
+
     #If it's the first spider crawling the first home page...
     @staticmethod
     def boot():
@@ -37,19 +46,20 @@ class spider:
         html_string = ""
         try:
             response = urlopen(page_url)
-            if response.getheader("Content-Type") == "text/html":
+            if "text/html" in response.getheader("Content-Type"):
                 html_bytes = response.read()
                 html_string = html_bytes.decode("utf-8")
             finder = LinkFinder(spider.base_url, page_url)
             finder.feed(html_string)
         except:
-            print("Error")
+            return ""
         return finder.page_links()
 
     @staticmethod
     def update_spider_file():
         set_to_file(spider.queue_file, spider.queue)
         set_to_file(spider.crawled_file, spider.crawled)
+
     @staticmethod
     def crawl_page(thread_name, page_url):
         if page_url not in spider.crawled:
@@ -58,14 +68,5 @@ class spider:
             spider.add_links_to_queue(spider.gather_links(page_url))
             spider.queue.remove(page_url)
             spider.crawled.add(page_url)
-            update_spider_file()
+            spider.update_spider_file()
 
-
-    def __int__(self, project_name, base_url, domain_name):
-        spider.project_name = project_name
-        spider.domain_name = domain_name
-        spider.base_url = base_url
-        spider.queue_file = spider.project_name + "/queue.txt"
-        spider.crawled_file = spider.project_name + "/crawled.txt"
-        self.boot()
-        self.crawl_page("First spider", spider.base_url)
