@@ -26,13 +26,30 @@ class spider:
     #Add the crawled pages to the queue
     @staticmethod
     def add_links_to_queue(page_urls):
-        pass
+        for url in page_urls:
+            if url not in spider.crawled and url not in spider.queue:
+                if spider.base_url in url:
+                    spider.queue.add(url)
 
     #Crawl all the pages in this url
     @staticmethod
     def gather_links(page_url):
-        pass
+        html_string = ""
+        try:
+            response = urlopen(page_url)
+            if response.getheader("Content-Type") == "text/html":
+                html_bytes = response.read()
+                html_string = html_bytes.decode("utf-8")
+            finder = LinkFinder(spider.base_url, page_url)
+            finder.feed(html_string)
+        except:
+            print("Error")
+        return finder.page_links()
 
+    @staticmethod
+    def update_spider_file():
+        set_to_file(spider.queue_file, spider.queue)
+        set_to_file(spider.crawled_file, spider.crawled)
     @staticmethod
     def crawl_page(thread_name, page_url):
         if page_url not in spider.crawled:
@@ -41,6 +58,7 @@ class spider:
             spider.add_links_to_queue(spider.gather_links(page_url))
             spider.queue.remove(page_url)
             spider.crawled.add(page_url)
+            update_spider_file()
 
 
     def __int__(self, project_name, base_url, domain_name):
