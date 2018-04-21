@@ -52,6 +52,7 @@ class spider:
             if "text/html" in response.getheader("Content-Type"):
                 html_bytes = response.read()
                 html_string = html_bytes.decode("utf-8")
+
             finder = LinkFinder(spider.base_url, page_url)
             finder.feed(html_string)
         except:
@@ -69,7 +70,9 @@ class spider:
             print(thread_name + " now crawling " + page_url)
             print("Queue: " + str(len(spider.queue)) + "| Crawled: " + str(len(spider.crawled)))
             spider.add_links_to_queue(spider.gather_links(page_url))
+
             spider.queue.remove(page_url)
             spider.crawled.add(page_url)
+
             spider.update_spider_file()
 
