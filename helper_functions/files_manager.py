@@ -6,7 +6,7 @@ Files manipilation stuff...
 #Write contnt to a new file
 def write_file(path, content):
     with open(path, "w") as file:
-        file.write(content+"\n")
+        file.write(content)
 
 #Append something to existing file
 def append_to_file(path, content):
