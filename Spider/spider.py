@@ -1,6 +1,9 @@
 from urllib.request import urlopen
-from link_finder import LinkFinder
-from helper import *
+
+from helper_functions.link_finder import LinkFinder
+
+from helper_functions.files_manager import *
+
 '''
 Grasp all the HTML from a page.
 '''
