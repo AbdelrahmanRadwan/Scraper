@@ -23,8 +23,25 @@ class spider:
         spider.queue = file_to_set(spider.queue_file)
         spider.crawled = file_to_set(spider.crawled_file)
 
-    def crawl_page(self):
+    #Add the crawled pages to the queue
+    @staticmethod
+    def add_links_to_queue(page_urls):
         pass
+
+    #Crawl all the pages in this url
+    @staticmethod
+    def gather_links(page_url):
+        pass
+
+    @staticmethod
+    def crawl_page(thread_name, page_url):
+        if page_url not in spider.crawled:
+            print(thread_name + " now crawling " + page_url)
+            print("Queue: " + str(len(spider.queue)) + "| Crawled: " + str(len(spider.crawled)))
+            spider.add_links_to_queue(spider.gather_links(page_url))
+            spider.queue.remove(page_url)
+            spider.crawled.add(page_url)
+
 
     def __int__(self, project_name, base_url, domain_name):
         spider.project_name = project_name
