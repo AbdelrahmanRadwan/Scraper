@@ -31,7 +31,7 @@ def set_to_file(path, links):
     delete_file_content(path)
     sorted(links)
     for link in links:
-        write_file(path, link)
+        append_to_file(path, link)
 
 #Create new project to crawl stuff in
 def create_project_dir(directory):
