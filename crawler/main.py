@@ -1,11 +1,9 @@
-import threading
-from helper import *
 from queue import Queue
-from link_finder import LinkFinder
-from domain import *
-from spider import spider
 
-PROJECT_NAME = "wildml"
+from Spider.spider import spider
+from helper_functions.domain import *
+
+PROJECT_NAME = "projects/wildml"
 HOME_PAGE = "www.wildml.com/"
 DOMAIN_NAME = get_domain_name(HOME_PAGE)
 QUEUE_FILE = PROJECT_NAME + "/queue.txt"
