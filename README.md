@@ -1,2 +1,7 @@
 # Scrapper
-Multithreading web spider that can listen to any website.
+
+![](http://i.imgur.com/wYi2CkD.png)
+
+# Overview
+
+Multi-threaded website crawler written in Python.
