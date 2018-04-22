@@ -29,7 +29,7 @@ def file_to_set(path):
 #Write the unique links that we have to a file
 def set_to_file(path, links):
     delete_file_content(path)
-    sorted(links)
+    links = sorted(links)
     for link in links:
         append_to_file(path, link)
 
