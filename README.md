@@ -1,4 +1,4 @@
-# Scrapper
+# Scraper
 
 ![](http://i.imgur.com/wYi2CkD.png)
 
