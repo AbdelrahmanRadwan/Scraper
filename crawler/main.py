@@ -6,8 +6,8 @@ from helper_functions.link_finder import *
 from helper_functions.files_manager import *
 
 
-PROJECT_NAME = 'projects/youtube'
-HOME_PAGE = 'http://www.youtube.com/'
+PROJECT_NAME = 'projects/quora'
+HOME_PAGE = 'https://www.quora.com/profile/Abdelrahman-Hamdy-1'
 DOMAIN_NAME = get_domain_name(HOME_PAGE)
 QUEUE_FILE = PROJECT_NAME + "/queue.txt"
 CRAWLED_FILE = PROJECT_NAME + "/crawled.txt"
